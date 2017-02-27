@@ -4,7 +4,7 @@
 	<script type="text/javascript" src="js/mover.js"></script>
 
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
-
+	<link href="/css/font-awesome.min.css" rel="stylesheet">
 	
 	
 	<style>
@@ -57,14 +57,19 @@
 	}
 	td
 	{
-		color: #6C8496;
-		padding: 15px;
+
+		padding: 0px;
+		height: 50px;
+		width: 20%;
+		text-decoration: none;
+		color:  #658495;
 	}
-	td:hover
+	
+	td a:hover
 	{
 		color: white;
-		padding: 15px;
 		cursor: pointer;
+		text-decoration: none;
 	}
 	
 	#header-logo
@@ -73,7 +78,41 @@
 		cursor: pointer;
 		
 	}
+	a, a:visited, a:hover, a:active, a:focus
+	{
+		height: 100%;
+		display: block;
+		text-decoration: none;
+		color: #658495;
+	}
+
+	a div
+	{
+		position: relative;
+		top: 50%;	
+	}
+
+	table
+	{
+		height: 100%;
+	}
 	
+	.grayed-out, .grayed-out:hover, .grayed-out:active:focus,  .grayed-out:focus
+	{
+		color: #ddd;
+		background-color: rgb(238, 238, 238);
+		border-color: rgba(46, 109, 164, 0.28);
+		cursor: default;
+	}
+	
+	.password-check-passes
+	{
+		color: green;
+	}
+	.password-check-fails
+	{
+		color: red;
+	}
 	</style>
 	
 	
@@ -85,23 +124,45 @@
 		<div class="header menu-text row">
 			<div class="col col-xs-8" style="height:100%">
 
-				<img id="header-logo" src="/img/staypal_logo.png"; >
+				<a href="" > <img id="header-logo" src="/img/staypal_logo.png"; > </a>
 			</div>
 			<div class="col col-xs-4" style="height:100%">
-				<div style="position:absolute; right: 0px; bottom: 0px;">
+				<div style="position:absolute; right: 0px; bottom: 0px; top:0px;">
 					<table>
 					<tr>
+						
 						<td id="login-button">
-						Login
+							<a href="#login"> 
+							<div>
+								Login 
+							</div>
+
+							</a>
 						</td>
-						<td>
-						Join
+						<td id="join-button">
+						
+						<a href="#join"> 
+							<div>
+								Join 
+							</div>
+						</a>
 						</td>
-						<td>
-						Staypal Business
+						<td  id="business-button">
+						
+						<a href="#business"> 
+							<div>
+								Staypal Business  
+							</div>
+						
+						</a>
 						</td>
-						<td>
-						Blog
+						<td  id="blog-button">
+						
+						<a href="#blog"> 
+							<div>
+								Blog
+							</div>
+						</a>
 						</td>						
 					</tr>
 					</table>

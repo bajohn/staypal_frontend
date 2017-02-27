@@ -29,22 +29,56 @@ function loadPageAjax(url)
 var initialLoad = false;
 
 $(document).ready( function() {
+	
+	
 	if(!initialLoad)
-{
-	loadPageAjax('/index-body');
-	initialLoad = true;
-	console.log(initialLoad)
-}
-	//link routing!
-	console.log(initialLoad)
+	{
+		if(window.location.hash=='#login')
+		{
+			loadPageAjax('/login');
+		}
+		else if(window.location.hash=='#join')
+		{
+			loadPageAjax('/index-body');
+		}
+		else if(window.location.hash=='#business')
+		{
+			loadPageAjax('/pages/coming-soon.html');
+		}
+		else if(window.location.hash=='#blog')
+		{
+			loadPageAjax('/pages/coming-soon.html');
+		}
+		else
+		{
+			loadPageAjax('/index-body');
+		}
+
+		initialLoad = true;
+		console.log(initialLoad)
+	}
+
 
 	
+	//link routing!
+	$("#header-logo").click(function(e) {
+		loadPageAjax('/index-body');		
+	});
 	
-	$("#login-button").click(function() {
+	$("#login-button").click(function(e) {
 		loadPageAjax('/login');
 	});
-	$("#header-logo").click(function() {
-		loadPageAjax('/index-body');
-		
-	})
+
+	$("#join-button").click(function(e) {
+		loadPageAjax('/index-body');		
+	});
+	
+	$("#business-button").click(function(e) {
+		loadPageAjax('/pages/coming-soon.html');		
+	});
+	
+	$("#blog-button").click(function(e) {
+		loadPageAjax('/pages/coming-soon.html');		
+	});	
+	
 })
