@@ -21,6 +21,8 @@ function loadPageAjax(url)
 {
 	$.ajax({
 		url: url,
+		email: sessionStorage.getItem('email'),
+		a_tkn: sessionStorage.getItem('a_tkn')
 	}).done(function(resp) {
 		pageChanger(resp);
 	});

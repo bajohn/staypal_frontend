@@ -23,8 +23,8 @@ function passwordMatch()
 $(document).ready( function() {
 		$("#join-submit-button").click(function()
 		{
-			console.log($('#emailBox').val());
-			console.log($('#passwordBox').val());
+			console.log($('#create-emailBox').val());
+			console.log($('#create-passwordBox').val());
 			console.log('submit');
 			
 			
@@ -33,8 +33,9 @@ $(document).ready( function() {
 			method: 'POST',
 			data: 
 			{
-				email: $('#emailBox').val(),
-				password: $('#passwordBox').val()
+				action: 'create',
+				email: $('#create-emailBox').val(),
+				password: $('#create-passwordBox').val()
 			}
 		}).done(function(resp) {
 			console.log(resp);
@@ -42,6 +43,9 @@ $(document).ready( function() {
 				
 			
 		})
+		
+
+		
 		$('#passwordBox').keyup(function() {
 			passwordMatch()
 		})
