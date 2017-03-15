@@ -17,16 +17,55 @@ function pageChanger(html)
 		
 		
 }
+
+function headerChanger(html)
+{
+	
+		$("#header-container").animate({
+			"opacity": 0.25
+			}, 200, function() {
+				$("#header-container").html(html)
+				$("#header-container").animate({
+					"opacity": 1.0
+				}, 200, function()
+				{
+			
+				})
+			})
+		
+		
+}
+
 function loadPageAjax(url)
 {
+	console.log(		sessionStorage.getItem('email'),
+		 sessionStorage.getItem('a_tkn'));
 	$.ajax({
 		url: url,
-		email: sessionStorage.getItem('email'),
-		a_tkn: sessionStorage.getItem('a_tkn')
+		data:
+		{
+			email: sessionStorage.getItem('email'),
+			a_tkn: sessionStorage.getItem('a_tkn')
+		}
 	}).done(function(resp) {
 		pageChanger(resp);
 	});
 }
+
+function loadHeaderAjax(url)
+{
+	$.ajax({
+		url: url,
+		data:
+		{
+			email: sessionStorage.getItem('email'),
+			a_tkn: sessionStorage.getItem('a_tkn')
+		}
+	}).done(function(resp) {
+		headerChanger(resp);
+	});
+}
+
 
 var initialLoad = false;
 
@@ -35,13 +74,17 @@ $(document).ready( function() {
 	
 	if(!initialLoad)
 	{
+		console.log(sessionStorage);
+		
+		loadHeaderAjax('/header');
+		
 		if(window.location.hash=='#login')
 		{
 			loadPageAjax('/login');
 		}
 		else if(window.location.hash=='#join')
 		{
-			loadPageAjax('/index-body');
+			loadPageAjax('/join');
 		}
 		else if(window.location.hash=='#business')
 		{
@@ -51,36 +94,29 @@ $(document).ready( function() {
 		{
 			loadPageAjax('/pages/coming-soon.html');
 		}
+		//logged in 
+		else if(window.location.hash=='#home')
+		{
+			loadPageAjax('/homepage');
+		}
+		else if(window.location.hash=='#profile')
+		{
+			loadPageAjax('/profile');
+		}
+		else if(window.location.hash=='#find')
+		{
+			loadPageAjax('/find');
+		}
 		else
 		{
-			loadPageAjax('/index-body');
+			loadPageAjax('/join');
 		}
 
 		initialLoad = true;
-		console.log(initialLoad)
 	}
 
 
 	
-	//link routing!
-	$("#header-logo").click(function(e) {
-		loadPageAjax('/index-body');		
-	});
-	
-	$("#login-button").click(function(e) {
-		loadPageAjax('/login');
-	});
 
-	$("#join-button").click(function(e) {
-		loadPageAjax('/index-body');		
-	});
-	
-	$("#business-button").click(function(e) {
-		loadPageAjax('/pages/coming-soon.html');		
-	});
-	
-	$("#blog-button").click(function(e) {
-		loadPageAjax('/pages/coming-soon.html');		
-	});	
 	
 })

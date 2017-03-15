@@ -19,10 +19,13 @@ $(document).ready( function() {
 			}
 		}).done(function(resp) {
 			resp = JSON.parse(resp);
-			console.log(resp.a_tkn);
 			sessionStorage.setItem('email', email);
 			sessionStorage.setItem('a_tkn', resp['a_tkn']);
 			console.log(sessionStorage);
+			
+			loadPageAjax('/login');
+			loadHeaderAjax('/header')
+			
 		});
 				
 			

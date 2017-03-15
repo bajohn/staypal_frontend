@@ -1,8 +1,9 @@
 
 function passwordMatch()
 {
-	console.log($('#passwordBox').val() ==$('#confirmBox').val())
-	if($('#passwordBox').val() ==$('#confirmBox').val())
+	console.log($('#create-passwordBox').val() ==$('#confirmBox').val())
+	console.log($('#create-passwordBox').val(), $('#confirmBox').val());
+	if($('#create-passwordBox').val() ==$('#confirmBox').val() && $('#confirmBox').val().length >7)
 	{
 		$('#password-check').removeClass();
 		$('#password-check').addClass('fa fa-check-circle-o password-check-passes');
@@ -38,7 +39,13 @@ $(document).ready( function() {
 				password: $('#create-passwordBox').val()
 			}
 		}).done(function(resp) {
-			console.log(resp);
+			
+			resp = JSON.parse(resp);
+			sessionStorage.setItem('email', resp['email']);
+			sessionStorage.setItem('a_tkn', resp['a_tkn']);
+			loadPageAjax('/homepage');
+			loadHeaderAjax('/header');
+				
 		});
 				
 			
@@ -46,7 +53,7 @@ $(document).ready( function() {
 		
 
 		
-		$('#passwordBox').keyup(function() {
+		$('#create-passwordBox').keyup(function() {
 			passwordMatch()
 		})
 		$('#confirmBox').keyup(function() {
